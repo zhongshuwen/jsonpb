@@ -1012,21 +1012,34 @@ func (u *Unmarshaler) unmarshalValue(target reflect.Value, inputValue json.RawMe
 	}
 
 	// Handle arrays (which aren't encoded bytes)
-	if targetType.Kind() == reflect.Slice && targetType.Elem().Kind() != reflect.Uint8 {
-		var slc []json.RawMessage
-		if err := json.Unmarshal(inputValue, &slc); err != nil {
-			return err
-		}
-		if slc != nil {
-			l := len(slc)
-			target.Set(reflect.MakeSlice(targetType, l, l))
-			for i := 0; i < l; i++ {
-				if err := u.unmarshalValue(target.Index(i), slc[i], prop); err != nil {
-					return err
+	if targetType.Kind() == reflect.Slice {
+		if targetType.Elem().Kind() == reflect.Uint8 {
+			var s string
+			if err := json.Unmarshal(inputValue, &s); err != nil {
+				return err
+			}
+			data, err := hex.DecodeString(s)
+			if err != nil {
+				return err
+			}
+			target.SetBytes(data)
+			return nil
+		} else {
+			var slc []json.RawMessage
+			if err := json.Unmarshal(inputValue, &slc); err != nil {
+				return err
+			}
+			if slc != nil {
+				l := len(slc)
+				target.Set(reflect.MakeSlice(targetType, l, l))
+				for i := 0; i < l; i++ {
+					if err := u.unmarshalValue(target.Index(i), slc[i], prop); err != nil {
+						return err
+					}
 				}
 			}
+			return nil
 		}
-		return nil
 	}
 
 	// Handle maps (whose keys are always strings)
