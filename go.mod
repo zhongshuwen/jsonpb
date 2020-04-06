@@ -1,4 +1,4 @@
-module github.com/eoscanada/jsonpb
+module github.com/dfuse-io/jsonpb
 
 go 1.12
 
