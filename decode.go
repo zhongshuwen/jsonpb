@@ -489,27 +489,16 @@ func (u *Unmarshaler) unmarshalSingularValue(v protoreflect.Value, in []byte, fd
 }
 
 func unmarshalValue(in []byte, v interface{}) (protoreflect.Value, error) {
-	fmt.Println("----- CALLLLL ------------")
-
 	var err error
 	if element, ok := v.(*[]byte); ok && hasPrefixAndSuffix('"', in, '"') {
-		fmt.Printf("Byte string "+string(in)+" type %T and %T\n", v, element)
-
 		var s string
 		err = json.Unmarshal(in, &s)
 		if err == nil {
-			fmt.Println("Decode bytes array " + s)
 			*element, err = hex.DecodeString(s)
 		}
 	} else {
 		err = json.Unmarshal(in, v)
 	}
-
-	if err != nil {
-		fmt.Println("An error!", err)
-	}
-
-	fmt.Println("-----------------")
 
 	return protoreflect.ValueOf(reflect.ValueOf(v).Elem().Interface()), err
 }
