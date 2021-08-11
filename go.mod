@@ -1,4 +1,4 @@
-module github.com/dfuse-io/jsonpb
+module github.com/streamingfast/jsonpb
 
 go 1.13
 

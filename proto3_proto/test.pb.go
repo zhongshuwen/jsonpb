@@ -5,8 +5,8 @@ package proto3_proto
 
 import (
 	fmt "fmt"
-	proto2_proto "github.com/dfuse-io/jsonpb/proto2_proto"
 	proto "github.com/golang/protobuf/proto"
+	proto2_proto "github.com/streamingfast/jsonpb/proto2_proto"
 	anypb "google.golang.org/protobuf/types/known/anypb"
 	math "math"
 )

@@ -17,14 +17,14 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes"
 
-	pb2 "github.com/dfuse-io/jsonpb/jsonpb_proto"
-	pb3 "github.com/dfuse-io/jsonpb/proto3_proto"
 	descpb "github.com/golang/protobuf/protoc-gen-go/descriptor"
 	anypb "github.com/golang/protobuf/ptypes/any"
 	durpb "github.com/golang/protobuf/ptypes/duration"
 	stpb "github.com/golang/protobuf/ptypes/struct"
 	tspb "github.com/golang/protobuf/ptypes/timestamp"
 	wpb "github.com/golang/protobuf/ptypes/wrappers"
+	pb2 "github.com/streamingfast/jsonpb/jsonpb_proto"
+	pb3 "github.com/streamingfast/jsonpb/proto3_proto"
 )
 
 var (

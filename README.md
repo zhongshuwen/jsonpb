@@ -1,4 +1,4 @@
-### `jsonpb` Library - dfuse fork
+### `jsonpb` Library - StreamingFast fork
 
 This is simply a copy of Google Protocol Buffer `jsonpb` package
 where `[]byte` types by default outputs to hexadecimal encoding instead
