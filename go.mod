@@ -1,4 +1,4 @@
-module github.com/streamingfast/jsonpb
+module github.com/eoscanada/jsonpb
 
 go 1.13
 
